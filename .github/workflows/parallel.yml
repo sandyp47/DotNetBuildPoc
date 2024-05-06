@@ -26,6 +26,7 @@ jobs:
         run: echo "hello"
   test:
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: download git code 
         run: git clone https://github.com/Shubham-Bawa/shubham-test.git 
@@ -33,7 +34,7 @@ jobs:
         run: pwd && ls   
   demo:
     runs-on: ubuntu-latest
-    needs: [test]
+    needs: [test, build]
     steps:
       - name: download git code 
         run: git clone https://github.com/Shubham-Bawa/shubham-test.git 
@@ -41,7 +42,7 @@ jobs:
         run: pwd && ls   
   demo2:
     runs-on: ubuntu-latest
-    needs: [build]
+    needs: demo
     steps:
       - name: download git code 
         run: git clone https://github.com/Shubham-Bawa/shubham-test.git 
